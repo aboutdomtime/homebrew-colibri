@@ -1,0 +1,39 @@
+name: Update Formula
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Update formula
+        run: ruby scripts/brew_tap_publisher.rb --config .github/brew-tap-publisher.json --update-only
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Commit update
+        run: |
+          if git diff --quiet; then
+            echo "Formula already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula .github/brew-tap-publisher.json
+          git commit -m "Update formula"
+          git push

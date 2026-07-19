@@ -1,0 +1,21 @@
+{
+  "binary_path": "coli",
+  "desc": "Run GLM-5.2 locally with a tiny C engine",
+  "formula": "colibri",
+  "homepage": "https://github.com/JustVugg/colibri",
+  "html_launcher": true,
+  "install_as": "coli",
+  "install_layout": "libexec-wrapper",
+  "kind": "binary",
+  "libexec_rename_glob": "colibri-*-macos-arm64",
+  "libexec_rename_to": "glm",
+  "license": "Apache-2.0",
+  "repo": "JustVugg/colibri",
+  "schedule": "17 */6 * * *",
+  "tap_owner": "aboutdomtime",
+  "tap_repo": "homebrew-colibri",
+  "test_arg": "--version",
+  "test_match": "{version}",
+  "visibility": "public",
+  "wrapper_interpreter": "python@3.14"
+}
