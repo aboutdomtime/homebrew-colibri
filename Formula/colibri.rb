@@ -1,15 +1,15 @@
 class Colibri < Formula
   desc "Run GLM-5.2 locally with a tiny C engine"
   homepage "https://github.com/JustVugg/colibri"
-  version "1.3.0"
+  version "1.4.0"
   license "Apache-2.0"
 
   depends_on :macos
   depends_on arch: :arm64
   depends_on "python@3.14"
 
-  url "https://github.com/JustVugg/colibri/releases/download/v1.3.0/colibri-v1.3.0-macos-arm64.tar.gz"
-  sha256 "a4caa481f841e8b639219cf3c066de7c43e240e3544207d0de3e7ca59b881f66"
+  url "https://github.com/JustVugg/colibri/releases/download/v1.4.0/colibri-v1.4.0-macos-arm64.tar.gz"
+  sha256 "c7994a62e7c5821cef2188fd47b2e7efeb7ebee7a1c1ab879a6670c7670919b5"
 
   livecheck do
     url "https://github.com/JustVugg/colibri/releases/latest"
@@ -30,6 +30,6 @@ class Colibri < Formula
 
   test do
     output = shell_output("#{bin}/coli --version 2>&1")
-    assert_match "1.3.0", output
+    assert_match "1.4.0", output
   end
 end
